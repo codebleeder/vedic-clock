@@ -51,4 +51,10 @@ const muhurtams =
         "द्युमद्गद्युति": [{hour: 3, min: 36}, {hour: 4, min: 24}],
         "ब्रह्म": [{hour: 4, min: 24}, {hour: 5, min: 12}],
         "समुद्रम": [{hour: 5, min: 12}, {hour: 6, min: 0}]
-    }
+    };
+
+    /*
+    30 kala = 48 min 
+    1 kala = 1.6 min = 96 seconds 
+    */
+    const kala = {}
