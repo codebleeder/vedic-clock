@@ -56,5 +56,9 @@ const muhurtams =
     /*
     30 kala = 48 min 
     1 kala = 1.6 min = 96 seconds 
+
+    1 kala = 30 kashta
+    30 kashta = 96 seconds 
+    1 kashta = 3.2 seconds 
     */
     const kala = {}
