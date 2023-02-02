@@ -18,7 +18,7 @@ const updateClock = () => {
     let currMuhurtam = muhurtams3[currMuhurtamIndex + 1];
 
     let currMuhurtamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min} 00`, 'HH mm ss');
-    let currKaalam = Math.floor(currMoment.diff(currMuhurtamStartMoment, 'minutes')/1.6);
+    let currKaalam = Math.floor(currMuhurtamStartMoment.diff(currMoment, 'minutes')/1.6);
 
     let currKaalamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min + Math.floor(currKaalam * 1.6)}`, 'HH mm');
     let secondsPassed = currMoment.diff(currKaalamStartMoment, 'seconds');
@@ -33,6 +33,11 @@ const updateClock = () => {
     const kashtamDiv = document.getElementById('kashtam-digit');
     kashtamDiv.innerHTML = kashtam;
 
+    
+    // debug display
+    document.getElementById('western-time').innerHTML = currMoment._i;
+    document.getElementById('muhurta-start-western').innerHTML = currMuhurtamStartMoment._i;
+    document.getElementById('minutes-elapsed-western').innerHTML = currMuhurtamStartMoment.diff(currMoment, 'minutes');
 };
 
 init();
