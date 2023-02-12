@@ -2,6 +2,11 @@
 const init = () => {
     const interval = 1000;
     setInterval(updateClock, interval);
+    setInterval(() => {
+        ++kashtam;
+        const kashtamDiv = document.getElementById('kashtam-digit');
+        kashtamDiv.innerHTML = kashtam;
+    }, 3600);
 }
 // ref: https://www.booksfact.com/puranas/muhurtas-described-ramayana.html#:~:text=(1)%20Swati%2C%20(2,after%20Abhijit%20constitutes%2020%20muhurtas.
 const updateClock = () => {
@@ -25,30 +30,42 @@ const updateClock = () => {
         currMuhurtamIndex++;
     }
     let currMuhurtamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min} 00`, 'HH mm ss');
-    let currKaalam = Math.floor(currMoment.diff(currMuhurtamStartMoment, 'minutes')/1.6);
-
+    //let currKaalam = Math.floor(currMoment.diff(currMuhurtamStartMoment, 'minutes')/1.6);
+    let currKaalam = Math.floor(Math.abs(((currDate - muhurtams4[currMuhurtam][0])/1000)/60)/1.6);
     let currKaalamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min + Math.floor(currKaalam * 1.6)}`, 'HH mm');
     let secondsPassed = currMoment.diff(currKaalamStartMoment, 'seconds');
-    let kashtam = Math.floor(secondsPassed/3.2);
+    //let kashtam = Math.floor(secondsPassed/3.2);
+
+    let x = new Date((muhurtams4[currMuhurtam][0].getTime() + (currKaalam * 1.6 * 60000)));
+    let secondsPassed2 = Math.abs(x-currDate)/1000;
+    let kashtam2 = Math.floor(secondsPassed2/3.2);
 
     const muhurtamNameDiv = document.getElementById('muhurtam-name');
     muhurtamNameDiv.innerHTML = currMuhurtam;
     const muhurtamDigitDiv = document.getElementById('muhurtam-digit');
-    muhurtamDigitDiv.innerHTML = currMuhurtamIndex + 1;
+    muhurtamDigitDiv.innerHTML = currMuhurtamIndex;
     const kaalamDiv = document.getElementById('kaalam-digit');
+    const kaalamDigit = kaalamDiv.innerHTML;
+    if(Number(kaalamDigit) !== currKaalam) {
+        resetKashtam();
+    }
     kaalamDiv.innerHTML = currKaalam;
-    const kashtamDiv = document.getElementById('kashtam-digit');
-    kashtamDiv.innerHTML = kashtam;
-
 
     // debug display
-    document.getElementById('western-time').innerHTML = currMoment._i;
-    document.getElementById('muhurta-start-western').innerHTML = currMuhurtamStartMoment._i;
-    document.getElementById('minutes-elapsed-western').innerHTML = currMoment.diff(currMuhurtamStartMoment, 'minutes');
+    if(debug) {
+        document.getElementById('western-time').innerHTML = currMoment._i;
+        document.getElementById('muhurta-start-western').innerHTML = currMuhurtamStartMoment._i;
+        document.getElementById('minutes-elapsed-western').innerHTML = currMoment.diff(currMuhurtamStartMoment, 'minutes');
+        document.getElementById('seconds-passed-2').innerHTML = secondsPassed2;
+        document.getElementById('kashtam-2').innerHTML = kashtam2;
+    }    
 };
-
+let kashtam = 0;
+const debug = false;
 init();
-
+const resetKashtam = () => {
+    kashtam = 0;
+}
 const muhurtams = 
     {
         "रुद्र": [{hour: 6, min: 0}, {hour: 6, min: 48}],
