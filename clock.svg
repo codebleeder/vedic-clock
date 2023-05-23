@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="250" cy="250" r="93" id="gradient-0" spreadMethod="pad" gradientTransform="matrix(0.372982, -0.873823, 0.919721, 0.392573, -73.175707, 370.312351)">
+      <stop offset="0" style="stop-color: rgb(177, 182, 162);"/>
+      <stop offset="1" style="stop-color: rgb(14, 18, 4);"/>
+    </radialGradient>
+  </defs>
+  <ellipse style="fill: url(#gradient-0); paint-order: fill; fill-rule: nonzero; stroke: rgb(14, 13, 13);" cx="250" cy="250" rx="93" ry="93"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="278.7" cy="161.55" rx="8" ry="8.03"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="250" cy="250" rx="8" ry="8"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="363.226" cy="194.455" rx="8" ry="8" transform="matrix(1, 0, 0, 1, -28.225869, 17.645438)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="249.638" cy="285.601" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 93.362207, -35.601449)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="218.638" cy="216.601" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 93.362207, -35.601449)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="132.734" cy="181.687" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 107.466173, -24.177513)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="197.137" cy="325.652" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="174.337" cy="356.935" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="140.837" cy="376.273" rx="8" ry="8" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="102.437" cy="380.315" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="65.637" cy="368.365" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="36.937" cy="342.485" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="21.137" cy="307.155" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="21.137" cy="268.485" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="36.937" cy="233.155" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+  <ellipse style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" cx="65.637" cy="207.275" rx="8" ry="8.03" transform="matrix(1, 0, 0, 1, 137.863207, -37.82515)"/>
+</svg>
