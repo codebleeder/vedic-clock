@@ -1,12 +1,19 @@
 
 const init = () => {
     const interval = 1000;
+    /*
     setInterval(updateClock, interval);
     setInterval(() => {
         ++kashtam;
         const kashtamDiv = document.getElementById('kashtam-digit');
         kashtamDiv.innerHTML = kashtam;
     }, 3600);
+    */
+
+    setInterval(() => {
+        const time = getTime();
+        updateUI(time);
+    }, interval);
 }
 // ref: https://www.booksfact.com/puranas/muhurtas-described-ramayana.html#:~:text=(1)%20Swati%2C%20(2,after%20Abhijit%20constitutes%2020%20muhurtas.
 const updateClock = () => {
@@ -66,6 +73,70 @@ init();
 const resetKashtam = () => {
     kashtam = 0;
 }
+
+const updateUI = (updatedValues) => 
+{    
+    const muhurtamDigitDiv = document.getElementById('muhurtam-digit');
+    muhurtamDigitDiv.innerHTML = updatedValues.Muhurtam;
+    const kaalamDiv = document.getElementById('kaalam-digit');
+    kaalamDiv.innerHTML = updatedValues.Kaalam;
+    const kashtamDiv = document.getElementById('kashtam-digit');
+    kashtamDiv.innerHTML = updatedValues.Kashtam;
+}
+
+const getTime = () => {
+    let seconds = secondsSince6AM();
+    const muhurtam = Math.floor(seconds/MuhurtamSeconds);
+
+    seconds = seconds - (muhurtam * MuhurtamSeconds);
+
+    const kala = Math.floor(seconds/KalaSeconds);
+
+    seconds = seconds - (kala * KalaSeconds);
+    const kashtam = Math.floor(seconds/KashtaSeconds);
+    return {
+        Muhurtam: muhurtam,
+        Kaalam: kala,
+        Kashtam: kashtam
+    };
+}
+
+const secondsSince6AM = () => 
+{
+    const currDate = new Date();
+    adjustDate(currDate);
+    const res = (currDate - Time6AM)/1000;
+    return res;
+}
+
+const adjustDate = (time) => {
+    if(time.getHours >= 0 && time.getHours < 6)
+    {
+        setDay2Date(time);
+    }
+    else 
+    {
+        setDay1Date(time);     
+    }
+}
+
+const setDay1Date = (time) => {
+    time.setDate(6);
+    time.setMonth(10);
+    time.setFullYear(1992);
+}
+
+const setDay2Date = (time) => {
+    time.setDate(7);
+    time.setMonth(10);
+    time.setFullYear(1992);
+}
+
+const Time6AM = new Date(1992, 10, 6, 6, 0, 0);
+const MuhurtamSeconds = 2880;
+const KalaSeconds = 96;
+const KashtaSeconds = 3.2;
+
 const muhurtams = 
     {
         "रुद्र": [{hour: 6, min: 0}, {hour: 6, min: 48}],
@@ -204,17 +275,4 @@ const muhurtams =
         "ब्रह्म": [ new Date(1992, 11, 7, 4, 24), new Date(1992, 11, 7, 5, 12)],
         "समुद्रम": [ new Date(1992, 11, 7, 5, 12), new Date(1992, 11, 7, 6, 0)]
     }
-    const secondsSince6AM = () => 
-    {
-        const currDate = Date.now();
-        if(currDate.getHours() >= 0 && currDate.getHours() < 6)
-        {
-            const yesterday6AM = Date.now();
-            const x= new Date();
-            y
-        }
-        else 
-        {
-
-        }
-    }
+    
