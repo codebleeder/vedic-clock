@@ -1,0 +1,30 @@
+#clock {
+    margin-top:15%;
+}
+
+.hand {
+    width: 50%;
+    right: 50%;
+    height: 6px;
+    background: #61afff;
+    position: absolute;
+    top: 50%;
+    border-radius: 6px;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  }
+  
+  .hand.hour-hand {
+    /*width: 30%;*/
+    z-index: 3;
+    width: 11rem;
+    top: 14rem;
+    left: 40.8%;
+  }
+
+  #svg-hour-hand {
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  }

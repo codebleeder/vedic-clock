@@ -21,3 +21,7 @@ kala        =  263/96 =  2 (263-192 = 71 seconds remaining)
 kashtha     =  71/3.2 = 22.1875
 
 => 08:02:22
+
+references:
+- https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a
+- https://www.booksfact.com/puranas/muhurtas-described-ramayana.html#:~:text=(1)%20Swati%2C%20(2,after%20Abhijit%20constitutes%2020%20muhurtas

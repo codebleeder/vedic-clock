@@ -1,75 +1,21 @@
 
+window.addEventListener("DOMContentLoaded", (event) => {
+    init();
+  });
+  
 const init = () => {
     const interval = 1000;
-    /*
-    setInterval(updateClock, interval);
-    setInterval(() => {
-        ++kashtam;
-        const kashtamDiv = document.getElementById('kashtam-digit');
-        kashtamDiv.innerHTML = kashtam;
-    }, 3600);
-    */
 
     setInterval(() => {
         const time = getTime();
         updateUI(time);
+        updateAnalogClock(time);
     }, interval);
 }
-// ref: https://www.booksfact.com/puranas/muhurtas-described-ramayana.html#:~:text=(1)%20Swati%2C%20(2,after%20Abhijit%20constitutes%2020%20muhurtas.
-const updateClock = () => {
-    let dayStartMuhurtam = moment('06 00', 'HH mm');    
-    let currDate = new Date();
-    if(currDate.getHours() >= 0 && currDate.getHours() < 6) {
-        currDate.setFullYear(1992, 11, 7);
-    }
-    else {
-        currDate.setFullYear(1992, 11, 6);
-    }
-    let currMoment = moment(`${currDate.getHours()} ${currDate.getMinutes()} ${currDate.getSeconds()}`, 'HH mm ss');
-    
-    let currMuhurtam = '';
-    let currMuhurtamIndex = 1;
-    for(let key in muhurtams4) {
-        if(currDate >= muhurtams4[key][0] && currDate < muhurtams4[key][1]) {
-            currMuhurtam = key;
-            break;
-        }
-        currMuhurtamIndex++;
-    }
-    let currMuhurtamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min} 00`, 'HH mm ss');
-    //let currKaalam = Math.floor(currMoment.diff(currMuhurtamStartMoment, 'minutes')/1.6);
-    let currKaalam = Math.floor(Math.abs(((currDate - muhurtams4[currMuhurtam][0])/1000)/60)/1.6);
-    let currKaalamStartMoment = moment(`${muhurtams[currMuhurtam][0].hour} ${muhurtams[currMuhurtam][0].min + Math.floor(currKaalam * 1.6)}`, 'HH mm');
-    let secondsPassed = currMoment.diff(currKaalamStartMoment, 'seconds');
-    //let kashtam = Math.floor(secondsPassed/3.2);
 
-    let x = new Date((muhurtams4[currMuhurtam][0].getTime() + (currKaalam * 1.6 * 60000)));
-    let secondsPassed2 = Math.abs(x-currDate)/1000;
-    let kashtam2 = Math.floor(secondsPassed2/3.2);
-
-    const muhurtamNameDiv = document.getElementById('muhurtam-name');
-    muhurtamNameDiv.innerHTML = currMuhurtam;
-    const muhurtamDigitDiv = document.getElementById('muhurtam-digit');
-    muhurtamDigitDiv.innerHTML = currMuhurtamIndex;
-    const kaalamDiv = document.getElementById('kaalam-digit');
-    const kaalamDigit = kaalamDiv.innerHTML;
-    if(Number(kaalamDigit) !== currKaalam) {
-        resetKashtam();
-    }
-    kaalamDiv.innerHTML = currKaalam;
-
-    // debug display
-    if(debug) {
-        document.getElementById('western-time').innerHTML = currMoment._i;
-        document.getElementById('muhurta-start-western').innerHTML = currMuhurtamStartMoment._i;
-        document.getElementById('minutes-elapsed-western').innerHTML = currMoment.diff(currMuhurtamStartMoment, 'minutes');
-        document.getElementById('seconds-passed-2').innerHTML = secondsPassed2;
-        document.getElementById('kashtam-2').innerHTML = kashtam2;
-    }    
-};
 let kashtam = 0;
 const debug = false;
-init();
+//init();
 const resetKashtam = () => {
     kashtam = 0;
 }
@@ -83,7 +29,20 @@ const updateUI = (updatedValues) =>
     const kashtamDiv = document.getElementById('kashtam-digit');
     kashtamDiv.innerHTML = updatedValues.Kashtam;
 }
+const hourHand = document.querySelector('.hour-hand');
+const svgHourHand = document.querySelector('#svg-hour-hand');
 
+const updateAnalogClock = (updatedValues) => 
+{
+    const now = new Date();
+    const mins = now.getMinutes();
+    const hour = updatedValues.Muhurtam;
+    let hourDegrees = ((hour / 15) * 360);
+    hourDegrees = (hour * 24) + 45;
+    console.log(`hour: ${hour} hourDegrees: ${hourDegrees}`);
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    //svgHourHand.style.transform = `rotate(${hourDegrees}deg)`;
+}
 const getTime = () => {
     let seconds = secondsSince6AM();
     const muhurtam = Math.floor(seconds/MuhurtamSeconds);
@@ -136,6 +95,19 @@ const Time6AM = new Date(1992, 10, 6, 6, 0, 0);
 const MuhurtamSeconds = 2880;
 const KalaSeconds = 96;
 const KashtaSeconds = 3.2;
+
+const paperMethod = () => {
+    // Create a Paper.js Path to draw a line into it:
+	var path = new Path();
+	// Give the stroke a color
+	path.strokeColor = 'black';
+	var start = new Point(100, 100);
+	// Move to start and draw a line from there
+	path.moveTo(start);
+	// Note the plus operator on Point objects.
+	// PaperScript does that for us, and much more!
+	path.lineTo(start + [ 100, -50 ]);
+}
 
 const muhurtams = 
     {
