@@ -39,7 +39,7 @@ const updateAnalogClock = (updatedValues) =>
     const hour = updatedValues.Muhurtam;
     let hourDegrees = ((hour / 15) * 360);
     hourDegrees = (hour * 24) + 45;
-    console.log(`hour: ${hour} hourDegrees: ${hourDegrees}`);
+    //console.log(`hour: ${hour} hourDegrees: ${hourDegrees}`);
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
     //svgHourHand.style.transform = `rotate(${hourDegrees}deg)`;
 }
