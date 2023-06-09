@@ -31,6 +31,7 @@ const updateUI = (updatedValues) =>
 }
 const hourHand = document.querySelector('.hour-hand');
 const svgHourHand = document.querySelector('#svg-hour-hand');
+const svgHourHand2 = document.querySelector('#svg-clock-hour');
 
 const updateAnalogClock = (updatedValues) => 
 {
@@ -42,6 +43,9 @@ const updateAnalogClock = (updatedValues) =>
     //console.log(`hour: ${hour} hourDegrees: ${hourDegrees}`);
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
     //svgHourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+    let x 
+    svgHourHand2.style.transform = `rotate(${hour * 24}deg)`;
 }
 const getTime = () => {
     let seconds = secondsSince6AM();
