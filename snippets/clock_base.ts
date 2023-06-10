@@ -15,6 +15,6 @@ for(let i=0; i<15; ++i)
     const rad = degToRad(i * 24);
     x = (r * Math.sin(rad)) + originX;
     y = 150 - (r * Math.cos(rad));
-    output += `<text x="${x}" y="${y}" stroke="black" stroke-width="2">${i}</text>\n`;
+    output += `<text x="${x}" y="${y}">${i}</text>\n`;
 }
 console.log(output);
