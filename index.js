@@ -11,6 +11,7 @@ const init = () => {
         updateUI(time);
         updateAnalogClock(time);
         updateMuhurtamName();
+        updateGuna();
     }, interval);
 }
 
@@ -106,99 +107,28 @@ const MuhurtamSeconds = 2880;
 const KalaSeconds = 96;
 const KashtaSeconds = 3.2;
 
-const paperMethod = () => {
-    // Create a Paper.js Path to draw a line into it:
-	var path = new Path();
-	// Give the stroke a color
-	path.strokeColor = 'black';
-	var start = new Point(100, 100);
-	// Move to start and draw a line from there
-	path.moveTo(start);
-	// Note the plus operator on Point objects.
-	// PaperScript does that for us, and much more!
-	path.lineTo(start + [ 100, -50 ]);
-}
-
 const muhurtamNameDiv = document.getElementById('muhurtam-name');
 const updateMuhurtamName = () => 
 {
+    muhurtamNameDiv.innerHTML = getMuhurtam();    
+}
+
+const getMuhurtam = () => 
+{
     let currDate = new Date();
     adjustDate(currDate);    
-    for(let key in muhurtams4) {
-        if(currDate >= muhurtams4[key][0] && currDate < muhurtams4[key][1]) {
-            currMuhurtam = key;
-            muhurtamNameDiv.innerHTML = key;
-            break;
+    for(let key in muhurtams) {
+        if(currDate >= muhurtams[key][0] && currDate < muhurtams[key][1]) {
+            return key;            
         }        
     }
 }
-const muhurtams = 
-    {
-        "रुद्र": [{hour: 6, min: 0}, {hour: 6, min: 48}],
-        "आहि": [{hour: 6, min: 48}, {hour: 7, min: 36}],
-        "मित्र": [{hour: 7, min: 36}, {hour: 8, min: 24}],
-        "पितॄ": [{hour: 8, min: 24}, {hour: 9, min: 12}],
-        "वसु": [{hour: 9, min: 12}, {hour: 10, min: 0}],
-        "वाराह": [{hour: 10, min: 0}, {hour: 10, min: 48}],
-        "विश्वेदेवा": [{hour: 10, min: 48}, {hour: 11, min: 36}],
-        "विधि": [{hour: 11, min: 36}, {hour: 12, min: 24}],
-        "सतमुखी": [{hour: 12, min: 24}, {hour: 13, min: 12}],
-        "पुरुहूत": [{hour: 13, min: 12}, {hour: 14, min: 0}],
-        "वाहिनी": [{hour: 14, min: 0}, {hour: 14, min: 48}],
-        "नक्तनकरा": [{hour: 14, min: 48}, {hour: 15, min: 36}],
-        "वरुण": [{hour: 15, min: 36}, {hour: 16, min: 24}],
-        "अर्यमन्": [{hour: 16, min: 24}, {hour: 17, min: 12}],
-        "भग": [{hour: 17, min: 12}, {hour: 18, min: 0}],
-        "गिरीश": [{hour: 18, min: 0}, {hour: 18, min: 48}],
-        "अजपाद": [{hour: 18, min: 48}, {hour: 19, min: 36}],
-        "अहिर्बुध्न्य": [{hour: 19, min: 36}, {hour: 20, min: 24}],
-        "पुष्य": [{hour: 20, min: 24}, {hour: 21, min: 12}],
-        "अश्विनी": [{hour: 21, min: 12}, {hour: 22, min: 0}],
-        "यम": [{hour: 22, min: 0}, {hour: 22, min: 48}],
-        "अग्नि": [{hour: 22, min: 48}, {hour: 23, min: 36}],
-        "विधातृ": [{hour: 23, min: 36}, {hour: 0, min: 24}],
-        "क्ण्ड": [{hour: 0, min: 24}, {hour: 1, min: 12}],
-        "अदिति": [{hour: 1, min: 12}, {hour: 2, min: 0}],
-        "जीव/अमृत": [{hour: 2, min: 0}, {hour: 2, min: 48}],
-        "विष्णु": [{hour: 2, min: 48}, {hour: 3, min: 36}],
-        "द्युमद्गद्युति": [{hour: 3, min: 36}, {hour: 4, min: 24}],
-        "ब्रह्म": [{hour: 4, min: 24}, {hour: 5, min: 12}],
-        "समुद्रम": [{hour: 5, min: 12}, {hour: 6, min: 0}]
-    };
-    const muhurtams2 = 
-    {
-        "रुद्र": [0600, 0648],
-        "आहि": [0648, 0736],
-        "मित्र": [0736, 0824],
-        "पितॄ": [0824, 0912],
-        "वसु": [0912, 1000],
-        "वाराह": [1000, 1048],
-        "विश्वेदेवा": [1048, 1136],
-        "विधि": [1136, 1224],
-        "सतमुखी": [1224, 1312],
-        "पुरुहूत": [1312, 1400],
-        "वाहिनी": [1400, 1448],
-        "नक्तनकरा": [1448, 1536],
-        "वरुण": [1536, 1624],
-        "अर्यमन्": [1624, 1712],
-        "भग": [1712, 1800],
-        "गिरीश": [1800, 1848],
-        "अजपाद": [1848, 1936],
-        "अहिर्बुध्न्य": [1936, 2024],
-        "पुष्य": [2024, 2112],
-        "अश्विनी": [2112, 2200],
-        "यम": [2200, 2248],
-        "अग्नि": [2248, 2336],
-        "विधातृ": [2336, 0024],
-        "क्ण्ड": [0024, 0112],
-        "अदिति": [0112, 0200],
-        "जीव/अमृत": [0200, 0248],
-        "विष्णु": [0248, 0336],
-        "द्युमद्गद्युति": [0336, 0424],
-        "ब्रह्म": [0424, 0512],
-        "समुद्रम": [0512, 0600]
-    };
 
+const gunaDiv = document.getElementById('guna');
+const updateGuna = (key) => 
+{
+    gunaDiv.innerHTML = guna[getMuhurtam()];
+}
     /*
     30 kala = 48 min 
     1 kala = 1.6 min = 96 seconds 
@@ -207,38 +137,8 @@ const muhurtams =
     30 kashta = 96 seconds 
     1 kashta = 3.2 seconds 
     */
-    const muhurtams3 = ["रुद्र",
-    "आहि",
-    "मित्र",
-    "पितॄ",
-    "वसु",
-    "वाराह",
-    "विश्वेदेवा",
-    "विधि",
-    "सतमुखी",
-    "पुरुहूत",
-    "वाहिनी",
-    "नक्तनकरा",
-    "वरुण",
-    "अर्यमन्",
-    "भग",
-    "गिरीश",
-    "अजपाद",
-    "अहिर्बुध्न्य",
-    "पुष्य",
-    "अश्विनी",
-    "यम",
-    "अग्नि",
-    "विधातृ",
-    "क्ण्ड",
-    "अदिति",
-    "जीव/अमृत",
-    "विष्णु",
-    "द्युमद्गद्युति",
-    "ब्रह्म",
-    "समुद्रम"]
-
-    const muhurtams4 = {
+    
+    const muhurtams = {
         "रुद्र": [new Date(1992, 11, 6, 6, 0, 0), new Date(1992, 11, 6, 6, 48)],
         "आहि": [new Date(1992, 11, 6, 6, 0, 0), new Date(1992, 11, 6, 6, 48)],
         "मित्र": [new Date(1992, 11, 6, 7, 36, 0), new Date(1992, 11, 6, 8, 24)],
@@ -270,4 +170,36 @@ const muhurtams =
         "ब्रह्म": [ new Date(1992, 11, 7, 4, 24), new Date(1992, 11, 7, 5, 12)],
         "समुद्रम": [ new Date(1992, 11, 7, 5, 12), new Date(1992, 11, 7, 6, 0)]
     }
-    
+
+    // शुभ अशुभ्
+    const guna = {
+        "रुद्र": "अशुभ्",
+        "आहि": "अशुभ्",
+        "मित्र": "शुभ्",
+        "पितॄ": "अशुभ्",
+        "वसु": "शुभ्",
+        "विश्वेदेवा": "शुभ्",
+        "विधि":       "शुभ् (Except Mondays and Fridays)",
+        "सतमुखी":     "शुभ्",
+        "पुरुहूत":     "अशुभ्",
+        "वाहिनी":      "अशुभ्",
+        "नक्तनकरा":   "अशुभ्",
+        "वरुण":      "शुभ्",
+        "अर्यमन्":    "शुभ् (Except Sundays)",
+        "भग":       "अशुभ्",
+        "गिरीश":      "शुभ्",
+        "अजपाद":     "अशुभ्",
+        "अहिर्बुध्न्य":  "शुभ्",
+        "पुष्य":      "शुभ्",
+        "अश्विनी":     "शुभ्",
+        "यम":       "अशुभ्",
+        "अग्नि":      "शुभ्",
+        "विधातृ":      "शुभ्",
+        "क्ण्ड":      "शुभ्",
+        "अदिति":      "शुभ्",
+        "जीव/अमृत":   "अती शुभ",
+        "विष्णु":      "शुभ्",
+        "द्युमद्गद्युति": "शुभ्",
+        "ब्रह्म":     "अती शुभ",
+        "समुद्रम":    "शुभ्"
+    }
