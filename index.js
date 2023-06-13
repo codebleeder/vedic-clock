@@ -80,7 +80,7 @@ const secondsSince6AM = () =>
 }
 
 const adjustDate = (time) => {
-    if(time.getHours >= 0 && time.getHours < 6)
+    if(time.getHours() >= 0 && time.getHours() < 6)
     {
         setDay2Date(time);
     }
