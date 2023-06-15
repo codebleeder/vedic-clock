@@ -32,11 +32,10 @@ const updateUI = (updatedValues) =>
     kashtamDiv.innerHTML = updatedValues.Kashtam;
 }
 const hourHand = document.querySelector('.hour-hand');
-const svgHourHand = document.querySelector('#svg-hour-hand');
 
-const svgHourHand2 = document.querySelector('#svg-clock-hour');
-const svgMinuteHand2 = document.querySelector('#svg-clock-minute');
-const svgSecondHand2 = document.querySelector('#svg-clock-second');
+const svgHourHand = document.querySelector('#svg-clock-hour');
+const svgMinuteHand = document.querySelector('#svg-clock-minute');
+const svgSecondHand = document.querySelector('#svg-clock-second');
 
 const updateAnalogClock = (updatedValues) => 
 {
@@ -45,14 +44,10 @@ const updateAnalogClock = (updatedValues) =>
     const hour = updatedValues.Muhurtam;
     let hourDegrees = ((hour / 15) * 360);
     hourDegrees = (hour * 24) + 45;
-    //console.log(`hour: ${hour} hourDegrees: ${hourDegrees}`);
-    //hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-    //svgHourHand.style.transform = `rotate(${hourDegrees}deg)`;
-
-    
-    svgHourHand2.style.transform = `rotate(${hour * 24}deg)`;
-    svgMinuteHand2.style.transform = `rotate(${updatedValues.Kaalam * 12}deg)`;
-    svgSecondHand2.style.transform = `rotate(${updatedValues.Kashtam * 12}deg)`;
+        
+    svgHourHand.style.transform = `rotate(${hour * 24}deg)`;
+    svgMinuteHand.style.transform = `rotate(${updatedValues.Kaalam * 12}deg)`;
+    svgSecondHand.style.transform = `rotate(${updatedValues.Kashtam * 12}deg)`;
 }
 const getTime = () => {
     let seconds = secondsSince6AM();
