@@ -1,6 +1,6 @@
 todo:
-- add tutorial
 - add mandala to clock 
 - migrate to blazor
 - integrate with strapi
+- add tutorial
 - language support - kannada, devanagari 
